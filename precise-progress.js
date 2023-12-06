@@ -3,6 +3,7 @@
 // @namespace    https://www.dreamingspanish.com
 // @version      0.1
 // @description  Adds a more precise calculation to the dreaming spanish progress page for total hours
+// @author       https://github.com/kfound
 // @match        https://www.dreamingspanish.com/progress
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dreamingspanish.com
 // @grant        none
