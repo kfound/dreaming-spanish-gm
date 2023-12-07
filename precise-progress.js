@@ -56,7 +56,10 @@ async function getData() {
             const totalHours = (totalSeconds / 60 / 60)
             // console.log("TOTAL HOURS: " + Number(totalHours).toFixed(2))
 
-            const totalWatchTimeToShow = Number(totalHours).toFixed(2)
+            // If you want to always round down (which is what DS does) use this one:
+            var totalWatchTimeToShow = totalHours.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+            // Use this one if you want to round up a bit :) 
+            // const totalWatchTimeToShow = Number(totalHours).toFixed(2)
 
 
             const snippet = document.getElementsByClassName('ds-overall-progression-card__info-label--bold')[1];
