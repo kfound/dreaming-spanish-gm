@@ -48,28 +48,33 @@ async function getData() {
             })
 
             const data = await response.json()
-            // console.log(">.............. ...<")
+            // console.log(">...............<")
             // console.log(data)
 
-            const totalSeconds = data.user.externalTimeSeconds + data.user.watchTime;
+            var totalSeconds = data.user.externalTimeSeconds + data.user.watchTime;
             // console.log("TOTAL SECONDS: " + totalSeconds)
-            const totalHours = (totalSeconds / 60 / 60)
-            // console.log("TOTAL HOURS: " + Number(totalHours).toFixed(2))
 
-            // If you want to always round down (which is what DS does) use this one:
-            var totalWatchTimeToShow = totalHours.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
-            // Use this one if you want to round up a bit :) 
-            // const totalWatchTimeToShow = Number(totalHours).toFixed(2)
+            // totalWatchTimeToShow is a decimal that represents how much time is left.
+            // If you want a format like 320.15 hrs uncomment the following three lines:
+            // const totalHours = (totalSeconds / 60 / 60);
+            // var totalWatchTimeToShow = totalHours.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+            // snippet.replaceWith(`${totalWatchTimeToShow} hrs`)
 
+
+            // Show time using format XXX hrs YY mins
+            var hours = Math.floor(totalSeconds / 3600);
+            totalSeconds -= hours * 3600
+
+            var minutes = Math.floor(totalSeconds / 60) % 60;
+            totalSeconds -= minutes * 60;
 
             const snippet = document.getElementsByClassName('ds-overall-progression-card__info-label--bold')[1];
 
-            snippet.replaceWith(`${totalWatchTimeToShow} hrs`)
+            snippet.replaceWith(`${hours} hrs ${minutes} mins`);
 
             // If you want to append to the current text, use this instead:
             // snippet.appendChild(document.createTextNode(` (${totalWatchTimeToShow} Hrs)`))
         }
     }
 }
-
 
