@@ -6,6 +6,7 @@
 // @author       https://github.com/kfound
 // @match        https://www.dreamingspanish.com/watch*
 // @match        https://www.dreamingspanish.com/progress*
+// @match        https://www.dreamingspanish.com/browse*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dreamingspanish.com
 // @grant        GM_addStyle
 // ==/UserScript==
