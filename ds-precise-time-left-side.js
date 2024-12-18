@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Dreaming Spanish Precise Time on Left Side
 // @namespace    https://www.dreamingspanish.com
-// @version      0.3
+// @version      0.4
 // @description  Adds more precise time totals to left side of page under the Daily Goal circle. Page must be wide enough to have left column visible
 // @author       https://github.com/kfound
 // @match        https://www.dreamingspanish.com/watch*
