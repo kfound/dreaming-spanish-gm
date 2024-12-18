@@ -7,6 +7,8 @@
 // @match        https://www.dreamingspanish.com/watch*
 // @match        https://www.dreamingspanish.com/progress*
 // @match        https://www.dreamingspanish.com/browse*
+// @match        https://www.dreamingspanish.com/library*
+// @match        https://www.dreamingspanish.com/series*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dreamingspanish.com
 // @grant        GM_addStyle
 // ==/UserScript==
@@ -59,8 +61,6 @@ async function getData() {
             var minutes = Math.floor(totalSeconds / 60) % 60;
             totalSeconds -= minutes * 60;
 
-            const location = document.getElementsByClassName('ds-sidebar-daily-goal__doughnut')[0];
-
 
             var input=document.createElement("input");
             input.type="button";
@@ -74,7 +74,7 @@ async function getData() {
             newdiv.setAttribute("class", "ds-precise-time-left");
 
             var newp = document.createElement('p');
-            newp.appendChild(document.createTextNode(`TOTAL: ${hours} h ${minutes} m `));
+            newp.appendChild(document.createTextNode(`TOTAL TIME: ${hours} h ${minutes} m `));
             newp.appendChild(document.createElement('br'));
             newp.appendChild(input);
             newp.appendChild(document.createElement('br'));
@@ -94,7 +94,24 @@ async function getData() {
                 // because this is the first time this page has been loaded.
                 // console.log("does not exist yet");
 
-                location.parentNode.appendChild(newdiv);
+
+                // This works both in regular and Dark Reader mode. The location is now at the very bottom of the sidebar. (No scrolling needed)
+                const location = document.getElementsByClassName('ds-sidebar__scroller')[0];
+
+                // this gets confused in dark mode and can't find it..
+//                 const location = document.getElementsByClassName('ds-sidebar-daily-goal__doughnut')[0];
+
+                if (location === undefined) {
+                    console.log("Unable to find the location to insert total hours. Sorry!");
+
+                } else {
+                    // console.log("location = " + location);
+                    // to put at the bottom of the page.
+                    // const location = document.getElementsByClassName('ds-sidebar__session')[0];
+                    location.parentNode.appendChild(newdiv);
+
+                }
+
 
             } else {
                 // The div already exists, we need to replace the content inside it with the new info
@@ -127,4 +144,8 @@ class Main {
 
 }
 
+
+
+
 Main.init();
+// Main.addClickEventToCalendar();
