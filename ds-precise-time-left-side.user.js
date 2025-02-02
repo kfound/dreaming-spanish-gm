@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Dreaming Spanish Precise Time on Left Side
 // @namespace    https://www.dreamingspanish.com
-// @version      0.4
+// @version      0.5
 // @description  Adds more precise time totals to left side of page under the Daily Goal circle. Page must be wide enough to have left column visible
 // @author       https://github.com/kfound
 // @match        https://www.dreamingspanish.com/watch*
@@ -94,12 +94,8 @@ async function getData() {
                 // because this is the first time this page has been loaded.
                 // console.log("does not exist yet");
 
-
                 // This works both in regular and Dark Reader mode. The location is now at the very bottom of the sidebar. (No scrolling needed)
-                const location = document.getElementsByClassName('ds-sidebar__scroller')[0];
-
-                // this gets confused in dark mode and can't find it..
-//                 const location = document.getElementsByClassName('ds-sidebar-daily-goal__doughnut')[0];
+                const location = document.getElementsByClassName('ds-sidebar__brand')[0];
 
                 if (location === undefined) {
                     console.log("Unable to find the location to insert total hours. Sorry!");
